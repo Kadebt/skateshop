@@ -1,0 +1,2 @@
+SELECT * FROM PRODUCTS
+WHERE id = $1;

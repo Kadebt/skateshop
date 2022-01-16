@@ -1,3 +1,5 @@
+const reviewscontroller = require("./reviewscontroller")
+
 module.exports = {
     getInventory: async (req, res) => {
         const db = req.app.get('db')
@@ -53,17 +55,44 @@ module.exports = {
      },
 
      addQuantity: async (req, res) => {
-         const { id } = req.params
-
+         let { id } = req.params
+        id = parseInt(id, 10)
+         
          for(let i = 0; i < req.session.cart.length; i++){
              let price = req.session.cart[i].price 
              if(req.session.cart[i].id === id){
-                 return price + price
+                 req.session.cart[i].price = price + price
+                 res.status(200).send(req.session.cart)
              }
-             return price
          }
+         
+     },
 
-         res.status(200).send(price)
+     filterBy: async (req, res) => {
+         const db = res.app.get('db')
+
+         const { brand } = req.query
+         const { min, max } = req.query
+         const { sizemin, sizemax} = req.query
+
+        //  const items = await db.get_items(id)
+
+        if(brand){
+            const brandsfiltered = await db.get_brands(brand)
+            return res.status(200).send(brandsfiltered)
+        }
+
+        if(max){
+            const pricefiltered = await db.get_price(min, max)
+            return res.status(200).send(pricefiltered)
+        }
+
+        if(sizemin) {
+            const sizefiltered = await db.get_size(sizemin, sizemax)
+            return res.status(200).send(sizefiltered)
+        } else {
+            return res.status(404).send('cannot filter')
+        }
      }
 
 }

@@ -1,0 +1,2 @@
+SELECT * FROM REVIEWS
+WHERE id = $1;

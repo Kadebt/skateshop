@@ -6,6 +6,7 @@ const authcontroller = require('./authcontroller')
 const reviewcontroller = require('./reviewscontroller')
 const controller = require('./controller')
 const {SERVER_PORT, CONNECTION_STRING, SESSION_SECRET} = process.env
+const path = require('path')
 
 const app = express()
 
@@ -23,24 +24,25 @@ app.use(
   app.post('/auth/login', authcontroller.login)
   app.post('/auth/register', authcontroller.register)
   app.delete('/auth/logout', authcontroller.logout)
-  app.get('/auth/check', auth.checkUser)
+  app.get('/auth/check', authcontroller.checkUser)
 
   app.get('/api/inventory/:id', controller.getInventory)
   app.get('/api/fullItem/:id', controller.getFullItem)
-  app.put('/api/addToCart/:id', controller.addToCart)
+  app.put('/api/cart/:id', controller.addToCart)
   app.get('/api/getCart', controller.getCart)
   app.delete('/api/deleteItem/:id', controller.deleteItem)
   app.put('/api/addQuantity/:id', controller.addQuantity)
+  app.get('/api/filter', controller.filterBy)
 
 app.get('/api/reviews/:id', reviewcontroller.getReviews)
-app.post('/api/postreviews', reviewcontroller.postReview)
+app.post('/api/postreviews/:id', reviewcontroller.postReview)
 app.delete('/api/deletereview/:id', reviewcontroller.deleteReview)
 app.put('/api/editreview/:id', reviewcontroller.editReview)
 
 app.use(express.static(__dirname + '/../build'))
-app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, '/../build/index.html'))
-})
+// app.get('*', (req, res) => {
+//     res.sendFile(path.join(__dirname, '/../build/index.html'))
+// })
 
 massive({
     connectionString: CONNECTION_STRING,

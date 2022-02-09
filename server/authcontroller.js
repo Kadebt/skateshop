@@ -52,7 +52,7 @@ module.exports = {
           res.status(200).send(req.session.user)
       }
     else{
-      res.sendStatus(404)
+      res.status(200).send(null)
     }
   }
     }

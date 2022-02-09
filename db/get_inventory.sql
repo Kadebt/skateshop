@@ -1,2 +1,2 @@
 SELECT * FROM PRODUCTS
-WHERE id = $1;
+WHERE category = $1;

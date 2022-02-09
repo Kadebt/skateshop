@@ -1,23 +1,31 @@
-import logo from './logo.svg';
-import './App.css';
+import Routes from "./routes";
+import Footer from "./components/footer";
+import Header from "./components/header";
+import SideBar from "./components/sidebar";
+import { useLocation } from "react-router-dom";
 
-function App() {
+function App(props) {
+  const location = useLocation();
+
+  function FooterSideBar() {
+    if (location.pathname === "/register" || location.pathname === "/login") {
+      return null;
+    } else if (location.pathname === "/cart" || location.pathname === "/") {
+      return <Footer />;
+    } else {
+      return (
+        <div>
+          <Footer />
+        </div>
+      );
+    }
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <Header />
+      {Routes}
+      <FooterSideBar />
     </div>
   );
 }

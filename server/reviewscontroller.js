@@ -12,10 +12,9 @@ module.exports = {
         const { id } = req.params
         const db = req.app.get('db')
         const { review, rating } = req.body
-        console.log(req.session.user.id, req.params)
         const userId = req.session.user.id
         const username = req.session.user.username
-        console.log(username)
+        console.log(req.body)
 
         await db.add_review([id , userId, review, rating, username])
 
@@ -28,14 +27,14 @@ module.exports = {
         const db = req.app.get('db')
         const { id } = req.params
 
-        const reviews = await db.get_reviews(id)
+        const reviews = await db.delete_review(id)
     
-        for(let i = 0; i < reviews.length; i++){
-            if(req.session.user.id === reviews[i].user_id){
-                 reviews.splice(i, 1)
-            }
-        }
-        await db.delete_review(id)
+        // for(let i = 0; i < reviews.length; i++){
+        //     if(req.session.user.id === reviews[i].user_id){
+        //          reviews.splice(i, 1)
+        //     }
+        // }
+    
         res.status(200).send(reviews)
     },
 

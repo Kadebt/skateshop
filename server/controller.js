@@ -30,6 +30,7 @@ module.exports = {
     const { id } = req.params;
 
     const item = await db.get_item(id);
+    console.log(item);
 
     if (req.session.cart) {
       req.session.cart = [...req.session.cart, item[0]];
@@ -43,8 +44,6 @@ module.exports = {
   getCart: async (req, res) => {
     if (req.session.cart) {
       res.status(200).send(req.session.cart);
-    } else {
-      res.status(200).send("Your Cart is Empty!");
     }
   },
 
@@ -105,34 +104,25 @@ module.exports = {
     res.status(200).send(filteredItems);
   },
 
-  newItems: async (res, req) => {
-    const db = res.app.get("db");
-
-    const allItems = db.get_all();
-
-    const start = allItems.length - 7;
-    const end = allItems.length - 1;
-
-    const findNewItems = allItems.slice((start, end));
-
-    res.status(200).send(findNewItems);
-  },
-
   checkout: async (req, res) => {
     const { items } = req.body;
-    console.log(items);
 
-    const price = items.reduce((prev, curr) => {
-      return prev.price + curr.price;
-    }, 0);
+    const price = (arr = items.reduce((prev, curr) => {
+      return prev + curr.price;
+    }, 0));
 
-    const paymentIntent = await stripe.paymentIntents.create({
-      amount: price,
-      currency: "usd",
-    });
-    res.send({
-      clientSecret: paymentIntent.client_secret,
-    });
+    if (items.length > 0) {
+      console.log(price);
+      const paymentIntent = await stripe.paymentIntents.create({
+        amount: price * 100,
+        currency: "usd",
+      });
+      res.send({
+        clientSecret: paymentIntent.client_secret,
+      });
+    } else {
+      return res.status(404);
+    }
   },
 
   usePoints: async (req, res) => {

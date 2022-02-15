@@ -1,6 +1,8 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { addToCart } from "../ducks/cartreducer";
+import FullItem from "./fullitem";
 
 const Dashboard = (props) => {
   return (

@@ -85,14 +85,15 @@ const Cart = (props) => {
     });
     setTotal(total - 5);
   };
-
+  console.log(props.cart.cart.length);
   return (
     <div>
-      {loading === true ? (
-        <BounceLoader />
+      {props.cart.cart.length === 0 ? (
+        <h1>Your Cart is Empty</h1>
       ) : (
         <div>
           {cartMapped}
+          {console.log("hit")}
           {props.user.user.points >= 50 ? (
             <button onClick={handleUsePoints}>Use Points</button>
           ) : (
@@ -106,6 +107,9 @@ const Cart = (props) => {
           )}
         </div>
       )}
+      {/* {loading === true && props.cart.cart.length > 0 ? (
+        <BounceLoader />
+      ) : ( */}
     </div>
   );
 };

@@ -141,6 +141,9 @@ const Sidebar = (props) => {
     }
   }, [brandsMapped]);
 
+  const stepCalculator = (sizeMax - sizeMin) / 10;
+  console.log(stepCalculator);
+
   return (
     <form onSubmit={handleSubmit}>
       {brandsMapped}
@@ -151,7 +154,7 @@ const Sidebar = (props) => {
           <input
             type="range"
             min={priceMin}
-            max={priceMid}
+            max={maxValue - 1}
             value={minValue}
             onChange={valueChange}
             step={1}
@@ -161,7 +164,7 @@ const Sidebar = (props) => {
           <p>Max {maxValue}</p>
           <input
             type="range"
-            min={priceMid}
+            min={minValue}
             max={priceMax}
             value={maxValue}
             onChange={maxValueChange}
@@ -175,21 +178,21 @@ const Sidebar = (props) => {
           <input
             type="range"
             min={sizeMin}
-            max={sizeMid}
+            max={sizeMaxValue - stepCalculator}
             value={sizeMinValue}
             onChange={minSizeValueChange}
-            step={0.05}
+            step={stepCalculator}
           />
         </div>
         <div>
           <p>Max {sizeMaxValue}</p>
           <input
             type="range"
-            min={sizeMid}
+            min={sizeMinValue}
             max={sizeMax}
             value={sizeMaxValue}
             onChange={maxSizeValueChange}
-            step={0.05}
+            step={stepCalculator}
           />
         </div>
       </div>

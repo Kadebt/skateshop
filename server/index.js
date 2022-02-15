@@ -33,7 +33,6 @@ app.delete("/api/deleteItem/:id", controller.deleteItem);
 app.put("/api/addQuantity/:id", controller.addQuantity);
 app.get("/api/filter/:id", controller.filterBy);
 app.post("/api/checkout", controller.checkout);
-app.get("/api/newItems", controller.newItems);
 app.put("/api/usepoints/:id", controller.usePoints);
 
 app.get("/api/reviews/:id", reviewcontroller.getReviews);

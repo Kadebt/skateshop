@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import "./styling/checkoutform.css";
 import {
   PaymentElement,
   useStripe,
@@ -80,7 +81,11 @@ export default function CheckoutForm(props) {
   return (
     <form id="payment-form" onSubmit={handleSubmit}>
       <PaymentElement id="payment-element" />
-      <button disabled={isLoading || !stripe || !elements} id="submit">
+      <button
+        className="paynow-button"
+        disabled={isLoading || !stripe || !elements}
+        id="submit"
+      >
         <span id="button-text">
           {isLoading ? <div className="spinner" id="spinner"></div> : "Pay now"}
         </span>

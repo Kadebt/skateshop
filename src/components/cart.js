@@ -8,6 +8,7 @@ import { loadStripe } from "@stripe/stripe-js";
 import Checkout from "./Checkout";
 import { BounceLoader } from "react-spinners";
 import CheckoutForm from "./CheckoutForm";
+import "./styling/cart.css";
 
 const stripePromise = loadStripe("pk_test_GxDPnMdvGuy27Ag4bWyuFTQm00NgQGG4IY");
 
@@ -60,18 +61,20 @@ const Cart = (props) => {
 
   const cartMapped = props.cart.cart.map((e) => {
     return (
-      <div>
-        <h1>{e.name}</h1>
-        <p>{e.brand}</p>
+      <div className="item-wrapper">
         <img style={{ height: "100px", width: "100px" }} src={e.content} />
-        <p>{e.price}</p>
-        <p>{e.size}</p>
+        <h1 className="cart-name">{e.name}</h1>
+        <div className="lower-item-wrap">
+          <p>${e.price}</p>
+          <p>{e.size}</p>
+        </div>
         <button
+          className="remove-button"
           onClick={() => {
             handleDeleteCart(e.id);
           }}
         >
-          remove from cart
+          -
         </button>
       </div>
     );
@@ -91,7 +94,7 @@ const Cart = (props) => {
       {props.cart.cart.length === 0 ? (
         <h1>Your Cart is Empty</h1>
       ) : (
-        <div>
+        <div className="cart-wrapper">
           {cartMapped}
           {console.log("hit")}
           {props.user.user.points >= 50 ? (
@@ -99,7 +102,7 @@ const Cart = (props) => {
           ) : (
             <p>Earn 50 Points for $5 off</p>
           )}
-          {total}
+          <p>Total ${total}</p>
           {clientSecret && (
             <Elements options={options} stripe={stripePromise}>
               <CheckoutForm />

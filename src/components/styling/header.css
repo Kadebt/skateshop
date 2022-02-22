@@ -1,0 +1,37 @@
+.header-wrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  height: 8vh;
+}
+
+.header-link {
+  text-decoration: none;
+  color: black;
+}
+
+.header-link:hover {
+  color: #0284c7;
+  text-decoration: underline;
+}
+
+.cart-image {
+  height: 30px;
+}
+
+.home-link {
+  height: 30px;
+}
+
+.login-link {
+  height: 30px;
+}
+
+.line-break {
+  height: 1px;
+  width: 85vw;
+  background-color: #f87171;
+  border: none;
+  margin-top: 0px;
+}

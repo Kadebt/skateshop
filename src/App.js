@@ -3,6 +3,7 @@ import Footer from "./components/footer";
 import Header from "./components/header";
 import SideBar from "./components/sidebar";
 import { useLocation } from "react-router-dom";
+import "./components/styling/app.css";
 
 function App(props) {
   const location = useLocation();
@@ -22,7 +23,7 @@ function App(props) {
   }
 
   return (
-    <div>
+    <div className="app-wrapper">
       <Header />
       {Routes}
       <FooterSideBar />

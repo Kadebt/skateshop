@@ -8,6 +8,8 @@ import Reviews from "./reviews";
 import StarRatingComponent from "react-star-rating-component";
 import SideBar from "./sidebar";
 import { BounceLoader } from "react-spinners";
+import "./styling/shop.css";
+import filterby from "./styling/icons/icons8-slider-50.png";
 
 const Shop = (props) => {
   const params = useParams();
@@ -18,6 +20,7 @@ const Shop = (props) => {
   const [reviews, setReviews] = useState([]);
   const [input, setInput] = useState("");
   const [rating, setRating] = useState(5);
+  const [filter, setFilter] = useState(false);
 
   useEffect(async () => {
     const id = params.id;
@@ -99,26 +102,34 @@ const Shop = (props) => {
 
   const shopMapped = shop.map((e) => {
     return (
-      <div>
-        <div
-          onClick={() => {
-            handlePopUp(e.id);
-            setPopUp(true);
-          }}
-        >
-          <h1>{e.name}</h1>
-          <p>{e.price}</p>
-          <img style={{ height: "100px", width: "100px" }} src={e.content} />
-          <p>{e.size}</p>
+      <div
+        className="shop-item"
+        onClick={() => {
+          handlePopUp(e.id);
+          setPopUp(true);
+        }}
+      >
+        <img
+          style={{ height: "100px", width: "100px" }}
+          src={e.content}
+          className="item-img"
+        />
+        <h1 className="item-name">{e.name}</h1>
+        <div className="price-size-wrap">
+          <div>
+            <p className="item-price">${e.price}</p>
+            <p className="item-size">{e.size}</p>
+          </div>
+          <button
+            className="item-button"
+            onClick={() => {
+              handleClick(e.id);
+              console.log(props.cart);
+            }}
+          >
+            +
+          </button>
         </div>
-        <button
-          onClick={() => {
-            handleClick(e.id);
-            console.log(props.cart);
-          }}
-        >
-          Add to cart
-        </button>
       </div>
     );
   });
@@ -130,32 +141,60 @@ const Shop = (props) => {
       ) : (
         <div>
           {popUp === true ? (
-            <div>
-              {fullItemMapped}
-              <div>
-                {!!props.user.user ? (
-                  <form onSubmit={reviewSubmit}>
-                    <StarRatingComponent
-                      name="rate1"
-                      starCount={5}
-                      value={rating}
-                      onStarClick={handleRating}
-                    />
-                    <label>
-                      Review
-                      <input value={input} onChange={handleInput} />
-                    </label>
-                    <button type="submit">Submit</button>
-                  </form>
-                ) : (
-                  <p>Login to post a review</p>
-                )}
+            <>
+              <div className="fullitem-scrim" />
+              <div className="center-scrim">
+                <div className="fullitem-wrap">
+                  {fullItemMapped}
+                  <div className="item-reviews">
+                    {!!props.user.user ? (
+                      <form onSubmit={reviewSubmit}>
+                        <StarRatingComponent
+                          name="rate1"
+                          starCount={5}
+                          value={rating}
+                          onStarClick={handleRating}
+                        />
+                        <label>
+                          Review
+                          <input value={input} onChange={handleInput} />
+                        </label>
+                        <button type="submit">Submit</button>
+                      </form>
+                    ) : (
+                      <p>Login to post a review</p>
+                    )}
+                    {reviewsMapped}
+                  </div>
+                </div>
               </div>
-              {reviewsMapped}
-            </div>
+            </>
           ) : null}
-          {shopMapped}
-          {params.id == 0 ? null : <SideBar shop={shop} setShop={setShop} />}
+          <div className="filter-wrap">
+            <p className="filter-p">Filter</p>
+            <img
+              src={filterby}
+              className="filterby-img"
+              onClick={() => {
+                setFilter(true);
+                console.log(shop);
+              }}
+            />
+          </div>
+          <div className="items-wrapper">
+            <h2 className="items-found">Found {shop.length} Results</h2>
+            {shopMapped}
+          </div>
+          <div className="sidebar-div">
+            {params.id == 0 ? null : (
+              <SideBar
+                setFilter={setFilter}
+                filter={filter}
+                shop={shop}
+                setShop={setShop}
+              />
+            )}
+          </div>
         </div>
       )}{" "}
     </div>

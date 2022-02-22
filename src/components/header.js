@@ -3,6 +3,7 @@ import { Link, useLocation } from "react-router-dom";
 import { connect } from "react-redux";
 import axios from "axios";
 import { getUser } from "../ducks/reducer";
+import "./styling/header.css";
 
 const Header = (props) => {
   const location = useLocation();
@@ -33,15 +34,37 @@ const Header = (props) => {
 
   return (
     <div>
-      {!!props.user.user ? (
-        `you have ${props.user.user.points} points`
-      ) : props.user.user ? (
-        "you have 0 points"
-      ) : (
-        <Link to="/login">login to earn points</Link>
-      )}
-      {location.pathname !== "/cart" ? <Link to="cart">Cart</Link> : null}
-      {location.pathname !== "/" ? <Link to="/">Home</Link> : null}
+      <div className="header-wrapper">
+        {!!props.user.user ? (
+          <p>you have {props.user.user.points} points</p>
+        ) : props.user.user ? (
+          <p>you have 0 points</p>
+        ) : (
+          <Link className="header-link" to="/login">
+            <img
+              className="login-link"
+              src="https://img.icons8.com/ios/50/000000/user--v1.png"
+            />
+          </Link>
+        )}
+        {location.pathname !== "/" ? (
+          <Link className="header-link" to="/">
+            <img
+              className="home-link"
+              src="https://img.icons8.com/external-kmg-design-detailed-outline-kmg-design/64/000000/external-skateboard-active-lifestyle-kmg-design-detailed-outline-kmg-design.png"
+            />
+          </Link>
+        ) : null}
+        {location.pathname !== "/cart" ? (
+          <Link className="header-link" to="cart">
+            <img
+              className="cart-image"
+              src="https://img.icons8.com/pastel-glyph/64/000000/shopping-cart--v2.png"
+            />
+          </Link>
+        ) : null}
+      </div>
+      <hr className="line-break" />
     </div>
   );
 };

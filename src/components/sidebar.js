@@ -1,6 +1,8 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { resolvePath, useParams } from "react-router-dom";
+import "./styling/sidebar.css";
+import close from "./styling/icons/icons8-close-window-50.png";
 
 const Sidebar = (props) => {
   const params = useParams();
@@ -53,20 +55,22 @@ const Sidebar = (props) => {
     }
   };
 
-  const brandsMapped = constShop.map((e) => {
-    return (
-      <div>
-        <input
-          type="checkbox"
-          value={e.brand}
-          onClick={() => {
-            handleBrandClick(e.brand);
-          }}
-        />
-        <label>{e.brand}</label>
-      </div>
-    );
-  });
+  const brandsMapped = constShop
+    .filter((e, index) => constShop.indexOf(e) === index)
+    .map((e) => {
+      return (
+        <div>
+          <input
+            type="checkbox"
+            value={e.brand}
+            onClick={() => {
+              handleBrandClick(e.brand);
+            }}
+          />
+          <label>{e.brand}</label>
+        </div>
+      );
+    });
 
   const valueChange = (e) => {
     console.log(e);
@@ -145,13 +149,32 @@ const Sidebar = (props) => {
   console.log(stepCalculator);
 
   return (
-    <form onSubmit={handleSubmit}>
-      {brandsMapped}
-      <div>
-        <p>Price</p>
+    <>
+      <div
+        className={props.filter ? "filter-scrim" : "filter-scrim-inactive"}
+      />
+      <form
+        className={props.filter ? "filter-active" : "filter-inactive"}
+        onSubmit={handleSubmit}
+      >
+        <img
+          className="close-filter"
+          onClick={(e) => {
+            e.preventDefault();
+            props.setFilter(false);
+          }}
+          src={close}
+        />
+        <h3 className="filter-label">Filter</h3>
         <div>
-          <p>Min {minValue}</p>
+          <p className="slider-label">Brands</p>
+          {brandsMapped}
+        </div>
+        <div className="slider-div">
+          <p className="slider-label">Price</p>
+          <p className="value-label">Min {minValue}</p>
           <input
+            className="min-slider"
             type="range"
             min={priceMin}
             max={maxValue - 1}
@@ -159,23 +182,21 @@ const Sidebar = (props) => {
             onChange={valueChange}
             step={1}
           />
-        </div>
-        <div>
-          <p>Max {maxValue}</p>
           <input
+            className="max-slider"
             type="range"
             min={minValue}
             max={priceMax}
             value={maxValue}
             onChange={maxValueChange}
           />
+          <p className="value-label">Max {maxValue}</p>
         </div>
-      </div>
-      <div>
-        <p>Size</p>
-        <div>
-          <p>Min {sizeMinValue}</p>
+        <div className="slider-div">
+          <p className="slider-label">Size</p>
+          <p className="value-label">Min {sizeMinValue}</p>
           <input
+            className="min-slider"
             type="range"
             min={sizeMin}
             max={sizeMaxValue - stepCalculator}
@@ -183,10 +204,8 @@ const Sidebar = (props) => {
             onChange={minSizeValueChange}
             step={stepCalculator}
           />
-        </div>
-        <div>
-          <p>Max {sizeMaxValue}</p>
           <input
+            className="max-slider"
             type="range"
             min={sizeMinValue}
             max={sizeMax}
@@ -194,10 +213,13 @@ const Sidebar = (props) => {
             onChange={maxSizeValueChange}
             step={stepCalculator}
           />
+          <p className="value-label">Max {sizeMaxValue}</p>
         </div>
-      </div>
-      <button type="submit">Test Submit</button>
-    </form>
+        <button className="submit-button" type="submit">
+          Submit
+        </button>
+      </form>
+    </>
   );
 };
 

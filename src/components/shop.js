@@ -139,7 +139,7 @@ const Shop = (props) => {
       {loading === true ? (
         <BounceLoader loading={loading} size={150} />
       ) : (
-        <div>
+        <div className="shop-wrap">
           {popUp === true ? (
             <>
               <div className="fullitem-scrim" />

@@ -95,19 +95,21 @@ const Cart = (props) => {
         <h1>Your Cart is Empty</h1>
       ) : (
         <div className="cart-wrapper">
-          {cartMapped}
+          <div className="cart-items">{cartMapped}</div>
           {console.log("hit")}
-          {props.user.user.points >= 50 ? (
-            <button onClick={handleUsePoints}>Use Points</button>
-          ) : (
-            <p>Earn 50 Points for $5 off</p>
-          )}
-          <p>Total ${total}</p>
-          {clientSecret && (
-            <Elements options={options} stripe={stripePromise}>
-              <CheckoutForm />
-            </Elements>
-          )}
+          <div className="lower-cart">
+            {props.user.user.points >= 50 ? (
+              <button onClick={handleUsePoints}>Use Points</button>
+            ) : (
+              <p>Earn 50 Points for $5 off</p>
+            )}
+            <p>Total ${total}</p>
+            {clientSecret && (
+              <Elements options={options} stripe={stripePromise}>
+                <CheckoutForm />
+              </Elements>
+            )}
+          </div>
         </div>
       )}
       {/* {loading === true && props.cart.cart.length > 0 ? (

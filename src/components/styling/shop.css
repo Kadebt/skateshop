@@ -147,3 +147,37 @@
 .item-reviews {
   width: 80%;
 }
+
+@media only screen and (min-width: 800px) {
+  .shop-wrap {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: center;
+    align-items: flex-start;
+  }
+
+  .filterby-img {
+    display: none;
+  }
+
+  .items-wrapper {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    grid-auto-rows: auto;
+    z-index: 0;
+  }
+
+  .shop-item {
+    width: 35vw;
+  }
+
+  .filter-wrap {
+    display: none;
+  }
+
+  .fullitem-wrap {
+    position: fixed;
+    top: 20vh;
+    left: 20vw;
+  }
+}

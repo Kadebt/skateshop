@@ -1,0 +1,2 @@
+SELECT * FROM REVIEWS
+WHERE product_id = $1;

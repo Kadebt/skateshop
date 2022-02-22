@@ -1,4 +1,4 @@
-create table useres (
+create table users (
     id serial primary key,
     email varchar(100),
     hash text

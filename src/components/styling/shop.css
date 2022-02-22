@@ -1,0 +1,149 @@
+.shop-item {
+  width: 42vw;
+  margin: 0px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  margin: 10px;
+  border-radius: 12px;
+  position: relative;
+  grid-row-end: span 2;
+  padding: 5px;
+}
+
+.shop-item:hover {
+  border: 2px #b91c1c;
+  border-radius: 10px;
+}
+
+.item-name {
+  font-size: 15px;
+  color: rgb(29, 29, 29);
+  margin: 5px;
+  text-align: center;
+}
+
+.items-wrapper {
+  display: grid;
+  grid-template-columns: 50% 50%;
+  grid-auto-rows: auto;
+  z-index: 0;
+}
+
+.item-img {
+  margin: 0px;
+}
+
+.item-price {
+  font-size: 18px;
+  margin: 0px;
+  color: black;
+}
+
+.item-size {
+  font-size: 12px;
+  margin: 0px;
+  color: rgb(71, 71, 71);
+}
+
+.item-button {
+  bottom: 7px;
+  right: 7px;
+  height: 30px;
+  width: 30px;
+  position: absolute;
+  background-color: #f87171;
+  border-radius: 20px;
+  color: white;
+  border: solid 1px #b91c1c;
+  font-size: 20px;
+}
+
+.price-size-wrap {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 90%;
+}
+
+.items-found {
+  height: 7vh;
+  width: 44vw;
+  font-size: 25px;
+  margin: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+}
+
+.filterby-img {
+  height: 15px;
+  float: right;
+  margin-right: 5%;
+  margin-left: 5px;
+}
+
+.filter-p {
+  font-size: 10px;
+  color: rgb(71, 71, 71);
+  float: right;
+  margin: 0px;
+}
+
+.filter-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  height: 20px;
+  width: 100vw;
+}
+
+.sidebar-div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.fullitem-scrim {
+  background-color: #171717;
+  z-index: 1;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  opacity: 45%;
+  filter: blur(1.5rem);
+}
+
+.fullitem-wrap {
+  z-index: 2;
+  position: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  background-color: white;
+  width: 60vw;
+  height: 70vh;
+  margin: auto;
+  border: 1px solid #f87171;
+  border-radius: 15px;
+  overflow: scroll;
+}
+
+.center-scrim {
+  display: flex;
+  justify-content: center;
+}
+
+.items-review {
+  width: 80%;
+}
+
+.item-reviews {
+  width: 80%;
+}

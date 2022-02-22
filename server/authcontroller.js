@@ -22,19 +22,21 @@ module.exports = {
         } else {
           res.status(403).send('Email or password incorrect')
         }
+        console.log(req.session.user)
       },
       register: async (req, res) => {
         const db = req.app.get('db')
-        const {email, password} = req.body
+        const {email, password, username} = req.body
         const checkUser = await db.check_users([email])
-    
+        
         if(checkUser[0]){
           return res.status(409).send('User already exists')
         }
+        const points = 0
         const salt = bcrypt.genSaltSync(10)
         const hash = bcrypt.hashSync(password, salt)
     
-        const newUser = await db.register_user([email, hash])
+        const newUser = await db.register_user([email, hash, username, points])
     
         req.session.user = newUser[0]
     
@@ -50,7 +52,7 @@ module.exports = {
           res.status(200).send(req.session.user)
       }
     else{
-      res.sendStatus(404)
+      res.status(200).send(null)
     }
   }
     }

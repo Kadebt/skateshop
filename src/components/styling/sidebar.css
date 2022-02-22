@@ -1,0 +1,82 @@
+@media only screen and (max-width: 800px) {
+  .filter-inactive {
+    display: none;
+  }
+
+  .filter-active {
+    display: flex;
+    position: fixed;
+    width: 70vw;
+    height: 70vh;
+    border-color: black;
+    z-index: 2;
+    top: 15%;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: column;
+    background-color: white;
+    border: 1px solid #f87171;
+    border-radius: 15px;
+  }
+
+  .filter-scrim {
+    background: #171717;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    opacity: 45%;
+    filter: blur(1.5rem);
+  }
+
+  .close-filter {
+    position: absolute;
+    top: 3px;
+    right: 3px;
+    height: 25px;
+  }
+
+  .min-slider {
+    width: 50%;
+    margin-top: 0px;
+    margin-bottom: 0px;
+  }
+
+  .max-slider {
+    width: 50%;
+    margin-top: 0px;
+    margin-bottom: 0px;
+  }
+
+  .slider-div {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .slider-label {
+    display: flex;
+    justify-content: center;
+    margin: 3px;
+  }
+
+  .filter-label {
+    margin: 0;
+  }
+  .value-label {
+    margin: 0px;
+  }
+  .input-wrapper {
+    width: 100%;
+  }
+
+  .submit-button {
+    color: white;
+    background-color: #f87171;
+    border: 1px solid #b91c1c;
+    border-radius: 5px;
+    height: 25px;
+  }
+}

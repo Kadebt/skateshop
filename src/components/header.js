@@ -36,9 +36,9 @@ const Header = (props) => {
     <div>
       <div className="header-wrapper">
         {!!props.user.user ? (
-          <p>you have {props.user.user.points} points</p>
+          <p>{props.user.user.points} points</p>
         ) : props.user.user ? (
-          <p>you have 0 points</p>
+          <p>0 points</p>
         ) : (
           <Link className="header-link" to="/login">
             <img

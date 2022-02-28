@@ -102,34 +102,36 @@ const Shop = (props) => {
 
   const shopMapped = shop.map((e) => {
     return (
-      <div
-        className="shop-item"
-        onClick={() => {
-          handlePopUp(e.id);
-          setPopUp(true);
-        }}
-      >
-        <img
-          style={{ height: "100px", width: "100px" }}
-          src={e.content}
-          className="item-img"
-        />
-        <h1 className="item-name">{e.name}</h1>
-        <div className="price-size-wrap">
-          <div>
-            <p className="item-price">${e.price}</p>
-            <p className="item-size">{e.size}</p>
+      <div className="shop-item">
+        <div
+          className="onclick-div"
+          onClick={() => {
+            handlePopUp(e.id);
+            setPopUp(true);
+          }}
+        >
+          <img
+            style={{ height: "100px", width: "100px" }}
+            src={e.content}
+            className="item-img"
+          />
+          <h1 className="item-name">{e.name}</h1>
+          <div className="price-size-wrap">
+            <div>
+              <p className="item-price">${e.price}</p>
+              <p className="item-size">{e.size}</p>
+            </div>
           </div>
-          <button
-            className="item-button"
-            onClick={() => {
-              handleClick(e.id);
-              console.log(props.cart);
-            }}
-          >
-            +
-          </button>
         </div>
+        <button
+          className="item-button"
+          onClick={() => {
+            handleClick(e.id);
+            console.log(props.cart);
+          }}
+        >
+          +
+        </button>
       </div>
     );
   });
@@ -139,7 +141,7 @@ const Shop = (props) => {
       {loading === true ? (
         <BounceLoader loading={loading} size={150} />
       ) : (
-        <div>
+        <div className="shop-wrap">
           {popUp === true ? (
             <>
               <div className="fullitem-scrim" />

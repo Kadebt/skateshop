@@ -79,8 +79,6 @@ module.exports = {
     const { id } = req.params;
     const { brands, min, max, sizemin, sizemax } = req.query;
 
-    console.log(brands, min, max, sizemin, sizemax);
-
     // turn string of brands names into an array
     const brandNamesArray = brands
       .split(" ")
@@ -90,7 +88,6 @@ module.exports = {
     // await db.
     console.log(id);
     const items = await db.get_inventory(id);
-    console.log(items, brandNamesArray);
     const filteredItems = items
       .filter((items) => brandNamesArray.includes(items.brand))
       .filter(
@@ -100,6 +97,8 @@ module.exports = {
           items.size >= sizemin &&
           items.size <= sizemax
       );
+
+    console.log(filteredItems);
 
     res.status(200).send(filteredItems);
   },

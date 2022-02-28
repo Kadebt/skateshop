@@ -15,7 +15,7 @@ const FullItem = (props) => {
         />
         <p>{props.name}</p>
         <p>{props.brand}</p>
-        <img style={{ height: "150px", width: "150px" }} src={props.img} />
+        <img className="fullitem-img" src={props.img} />
         <div className="price-size">
           <p>${props.price}</p>
           <p>Size: {props.size}</p>

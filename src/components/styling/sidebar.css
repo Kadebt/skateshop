@@ -80,3 +80,41 @@
     height: 25px;
   }
 }
+
+@media only screen and (min-width: 801px) {
+  .filter-inactive {
+    float: left;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-right: 5px;
+  }
+
+  .filter-p {
+    display: none;
+  }
+
+  .close-filter {
+    display: none;
+  }
+
+  .submit-button {
+    color: white;
+    background-color: #f87171;
+    border: 1px solid #b91c1c;
+    border-radius: 5px;
+    height: 25px;
+  }
+
+  .slider-div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 50px;
+  }
+
+  .slider-label {
+    font-size: 20px;
+  }
+}

@@ -21,7 +21,6 @@ const Cart = (props) => {
     axios.get("/api/getCart").then((res) => {
       props.getCart(res.data);
       setLoading(false);
-      findtotal(props.cart.cart);
     });
   }, []);
 
@@ -34,22 +33,22 @@ const Cart = (props) => {
     });
   }, []);
 
+  useEffect(() => {
+    console.log("hit");
+    let price = 0;
+    for (let i = 0; i < props.cart.cart.length; i++) {
+      console.log(i);
+      price = props.cart.cart[i].price + price;
+    }
+    setTotal(price);
+  }, [props.cart.cart]);
+
   const handleDeleteCart = (id) => {
     axios.delete(`/api/deleteItem/${id}`).then((res) => {
       console.log(res.data);
       props.deleteItem(res.data);
     });
   };
-
-  let findtotal = (arr) => {
-    let price = 0;
-    for (let i = 0; i < arr.length; i++) {
-      price = arr[i].price + price;
-    }
-    setTotal(price);
-  };
-
-  console.log(props);
 
   const appearance = {
     theme: "stripe",
@@ -88,26 +87,28 @@ const Cart = (props) => {
     });
     setTotal(total - 5);
   };
-  console.log(props.cart.cart.length);
+
   return (
     <div>
       {props.cart.cart.length === 0 ? (
         <h1>Your Cart is Empty</h1>
       ) : (
         <div className="cart-wrapper">
-          {cartMapped}
+          <div className="cart-items">{cartMapped}</div>
           {console.log("hit")}
-          {props.user.user.points >= 50 ? (
-            <button onClick={handleUsePoints}>Use Points</button>
-          ) : (
-            <p>Earn 50 Points for $5 off</p>
-          )}
-          <p>Total ${total}</p>
-          {clientSecret && (
-            <Elements options={options} stripe={stripePromise}>
-              <CheckoutForm />
-            </Elements>
-          )}
+          <div className="lower-cart">
+            {props.user.user.points >= 50 ? (
+              <button onClick={handleUsePoints}>Use Points</button>
+            ) : (
+              <p>Earn 50 Points for $5 off</p>
+            )}
+            <p>Total ${total}</p>
+            {clientSecret && (
+              <Elements options={options} stripe={stripePromise}>
+                <CheckoutForm />
+              </Elements>
+            )}
+          </div>
         </div>
       )}
       {/* {loading === true && props.cart.cart.length > 0 ? (

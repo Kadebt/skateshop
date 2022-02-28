@@ -7,6 +7,7 @@ import Review from "./components/reviews";
 import Fullitem from "./components/fullitem";
 import Register from "./components/register";
 import Login from "./components/Auth";
+import Payment from "./components/Payment";
 
 export default (
   <Routes>
@@ -17,5 +18,6 @@ export default (
     <Route path="/reviews" element={<Review />} />
     <Route path="/fullitem/:id" element={<Fullitem />} />
     <Route path="/cart" element={<Cart />} />
+    <Route path="/payment" element={<Payment />} />
   </Routes>
 );

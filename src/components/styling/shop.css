@@ -148,6 +148,12 @@
   width: 80%;
 }
 
+.onclick-div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 @media only screen and (min-width: 800px) {
   .shop-wrap {
     display: flex;
@@ -168,7 +174,7 @@
   }
 
   .shop-item {
-    width: 35vw;
+    width: 30vw;
   }
 
   .filter-wrap {

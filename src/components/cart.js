@@ -21,7 +21,6 @@ const Cart = (props) => {
     axios.get("/api/getCart").then((res) => {
       props.getCart(res.data);
       setLoading(false);
-      findtotal(props.cart.cart);
     });
   }, []);
 
@@ -34,22 +33,22 @@ const Cart = (props) => {
     });
   }, []);
 
+  useEffect(() => {
+    console.log("hit");
+    let price = 0;
+    for (let i = 0; i < props.cart.cart.length; i++) {
+      console.log(i);
+      price = props.cart.cart[i].price + price;
+    }
+    setTotal(price);
+  }, [props.cart.cart]);
+
   const handleDeleteCart = (id) => {
     axios.delete(`/api/deleteItem/${id}`).then((res) => {
       console.log(res.data);
       props.deleteItem(res.data);
     });
   };
-
-  let findtotal = (arr) => {
-    let price = 0;
-    for (let i = 0; i < arr.length; i++) {
-      price = arr[i].price + price;
-    }
-    setTotal(price);
-  };
-
-  console.log(props);
 
   const appearance = {
     theme: "stripe",
@@ -88,7 +87,7 @@ const Cart = (props) => {
     });
     setTotal(total - 5);
   };
-  console.log(props.cart.cart.length);
+
   return (
     <div>
       {props.cart.cart.length === 0 ? (

@@ -35,6 +35,7 @@ const Sidebar = (props) => {
         `/api/filter/${id}?min=${minValue}&max=${maxValue}&sizemin=${sizeMinValue}&sizemax=${sizeMaxValue}&brands=${selectedBrandQuery}`
       )
       .then((res) => {
+        console.log(res.data);
         props.setShop(res.data);
       });
   };

@@ -80,6 +80,7 @@ const Shop = (props) => {
       });
     }
     setPopUp(true);
+    setInput("");
   };
 
   const handleRating = (num) => {
@@ -159,9 +160,15 @@ const Shop = (props) => {
                         />
                         <label>
                           Review
-                          <input value={input} onChange={handleInput} />
+                          <input
+                            className="review-input"
+                            value={input}
+                            onChange={handleInput}
+                          />
                         </label>
-                        <button type="submit">Submit</button>
+                        <button className="review-btn" type="submit">
+                          Submit
+                        </button>
                       </form>
                     ) : (
                       <p>Login to post a review</p>

@@ -63,4 +63,19 @@
     align-items: center;
     justify-content: center;
   }
+
+  .lower-cart {
+    background-color: white;
+    width: 35vw;
+    height: 45vh;
+    border-radius: 10px;
+    padding: 10px;
+  }
+
+  .usepoint-btn {
+    background-color: #f87171;
+    border: 1px solid #b91c1c;
+    border-radius: 5px;
+    color: white;
+  }
 }

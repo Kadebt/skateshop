@@ -1,3 +1,17 @@
 .reviews-wrapper {
   width: 100%;
 }
+
+.review-btn {
+  background-color: #f87171;
+  color: white;
+  border: 1px solid #b91c1c;
+  border-radius: 5px;
+}
+
+.reviewdelete-btn {
+  background-color: #f87171;
+  color: white;
+  border: 1px solid #b91c1c;
+  border-radius: 5px;
+}

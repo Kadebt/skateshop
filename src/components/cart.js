@@ -98,7 +98,9 @@ const Cart = (props) => {
           {console.log("hit")}
           <div className="lower-cart">
             {props.user.user.points >= 50 ? (
-              <button onClick={handleUsePoints}>Use Points</button>
+              <button className="usepoint-btn" onClick={handleUsePoints}>
+                Use Points
+              </button>
             ) : (
               <p>Earn 50 Points for $5 off</p>
             )}

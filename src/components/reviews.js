@@ -15,13 +15,13 @@ const Review = (props) => {
   return (
     <div className="reviews-wrapper">
       {!!props.user.user && props.user.user.id === props.userid ? (
-        <button onClick={handleDelete}>delete</button>
+        <button className="reviewdelete-btn" onClick={handleDelete}>
+          Delete
+        </button>
       ) : null}
       <p>User: {props.username}</p>
-      <p>Review:</p>
-      <p>{props.review}</p>
-      <p>Rating:</p>
-      <p>{props.rating}</p>
+      <p>Review: {props.review}</p>
+      <p>Rating: {props.rating}</p>
     </div>
   );
 };

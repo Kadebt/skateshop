@@ -74,7 +74,6 @@ const Shop = (props) => {
     };
     if (body.review.length > 5) {
       const id = fullItem[0].id;
-      console.log(body);
       axios.post(`/api/postreviews/${id}`, body).then((res) => {
         setReviews(res.data);
       });

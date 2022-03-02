@@ -37,7 +37,6 @@ const Cart = (props) => {
     console.log("hit");
     let price = 0;
     for (let i = 0; i < props.cart.cart.length; i++) {
-      console.log(i);
       price = props.cart.cart[i].price + price;
     }
     setTotal(price);
@@ -45,7 +44,6 @@ const Cart = (props) => {
 
   const handleDeleteCart = (id) => {
     axios.delete(`/api/deleteItem/${id}`).then((res) => {
-      console.log(res.data);
       props.deleteItem(res.data);
     });
   };
@@ -95,7 +93,6 @@ const Cart = (props) => {
       ) : (
         <div className="cart-wrapper">
           <div className="cart-items">{cartMapped}</div>
-          {console.log("hit")}
           <div className="lower-cart">
             {props.user.user.points >= 50 ? (
               <button className="usepoint-btn" onClick={handleUsePoints}>
